@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MoodShelf — Books for how you feel</title>
+  <meta name="description" content="Get reading recommendations based on your mood and the books you've already loved." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="top">
+    <div class="brand">
+      <span class="mark" aria-hidden="true">M</span>
+      <div>
+        <h1>MoodShelf</h1>
+        <p class="tagline">Recommendations from how you feel — and what you’ve already read.</p>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button class="tab is-active" data-tab="discover" role="tab" aria-selected="true">Discover</button>
+      <button class="tab" data-tab="shelf" role="tab" aria-selected="false">My shelf <span id="shelf-count" class="badge">0</span></button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="panel-discover" class="panel is-active" role="tabpanel">
+      <div class="hero-card">
+        <p class="eyebrow">How do you want a book to feel?</p>
+        <h2>Pick a mood</h2>
+        <div id="mood-grid" class="mood-grid"></div>
+        <div class="controls">
+          <label class="toggle">
+            <input type="checkbox" id="prefer-shelf" checked />
+            Lean on books I’ve already liked
+          </label>
+          <button id="recommend-btn" class="primary" type="button">Find books</button>
+        </div>
+        <p id="mood-hint" class="hint"></p>
+      </div>
+
+      <div id="status" class="status" hidden></div>
+      <div id="results" class="results"></div>
+    </section>
+
+    <section id="panel-shelf" class="panel" role="tabpanel" hidden>
+      <div class="hero-card">
+        <p class="eyebrow">Your reading history</p>
+        <h2>What have you already read?</h2>
+        <p class="lede">Search a title or author. Rate it. MoodShelf uses liked books to tilt recommendations toward your taste.</p>
+        <form id="search-form" class="search-row" autocomplete="off">
+          <input id="book-query" type="search" placeholder="Search by title or author…" required />
+          <button class="primary" type="submit">Search</button>
+        </form>
+        <div id="search-results" class="search-results"></div>
+      </div>
+
+      <div class="shelf-meta">
+        <h3>On your shelf</h3>
+        <button id="clear-shelf" class="ghost" type="button">Clear shelf</button>
+      </div>
+      <div id="shelf-list" class="shelf-list"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Book data and covers from <a href="https://openlibrary.org/developers/api" target="_blank" rel="noopener">Open Library</a>. Your shelf stays in this browser only.</p>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
